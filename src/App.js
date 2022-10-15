@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import NapraviUser from './pages/NapraviUser';
 import IzmeniUser from "./pages/IzmeniUser";
 import ObrisiUser from "./pages/ObrisiUser";
+import Login from "./pages/Login";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout/>}>
             <Route index element={<Home/>}/>
+            <Route path="login" element={<Login/>}/>
             <Route path="user/napravi" element={<NapraviUser/>}/>
             <Route path="user/izmeni" element={<IzmeniUser/>}/>
             <Route path="user/obrisi" element={<ObrisiUser/>}/>

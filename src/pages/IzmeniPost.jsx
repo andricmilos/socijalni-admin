@@ -38,7 +38,7 @@ function IzmeniPost() {
     }
 
     const datumChange = (event) => {
-        post["datum"] = event.target.value
+        post["datum_postavljanja"] = event.target.value
     }
 
     /*------------------------------------------*/
@@ -56,12 +56,13 @@ function IzmeniPost() {
     }
 
     const datumChangeValue = (event) => {
-        postValue["datum"] = event.target.value
+        postValue["datum_postavljanja"] = event.target.value
     }
 
     function Klik(){
-        post["datum_postavljanja"] = Date()
+        //post["datum_postavljanja"] = Date()
         alert(JSON.stringify(post))
+        alert(JSON.stringify(postValue))
     }
 
     return (<>
@@ -87,7 +88,7 @@ function IzmeniPost() {
         <input type="date" onChange={datumChange} disabled={datumEnabled}/>
         <input type="date" onChange={datumChangeValue} disabled={datumEnabled}/>
     
-        <input type="submit" value="Submit" onClick={Klik}/>
+        <input type="submit" value="Save" onClick={Klik}/>
     </form>
     </>);
 }

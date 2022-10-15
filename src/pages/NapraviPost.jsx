@@ -25,7 +25,7 @@ function NapraviPost() {
         <label>Tekst</label>
         <input type="text" onChange={tekstChange}/>
     
-        <input type="submit" value="Submit" onClick={Klik}/>
+        <input type="submit" value="Create" onClick={Klik}/>
     </form>
     </>);
 }

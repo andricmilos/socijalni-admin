@@ -5,27 +5,28 @@ import Navbarcss from './Navbar.css';
 function Navbar() {
   return (<nav>
     <div class="navbar">
-        <a class='active'><Link to='/'>Pocetna</Link></a>
-        <a class="dropdown">
+        <button><Link to='/'>Pocetna</Link></button>
+        <button class="dropdown">
           <button class="dropbtn">Post
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a><Link to='/post/napravi'>Napravi</Link></a>
-            <a><Link to='/post/izmeni'>Izmeni</Link></a>
-            <a><Link to='/post/obrisi'>Obrisi</Link></a>
+            <button><Link to='/post/napravi'>Napravi</Link></button>
+            <button><Link to='/post/izmeni'>Izmeni&nbsp;&nbsp;</Link></button>
+            <button><Link to='/post/obrisi'>Obrisi&nbsp;&nbsp;&nbsp;</Link></button>
           </div>
-        </a> 
-        <a class="dropdown">
+        </button> 
+        <button class="dropdown">
           <button class="dropbtn">User
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
-            <a><Link to='/user/napravi'>Napravi</Link></a>
-            <a><Link to='/user/izmeni'>Izmeni</Link></a>
-            <a><Link to='/user/obrisi'>Obrisi</Link></a>
+            <button><Link to='/user/napravi'>Napravi</Link></button>
+            <button><Link to='/user/izmeni'>Izmeni&nbsp;&nbsp;</Link></button>
+            <button><Link to='/user/obrisi'>Obrisi&nbsp;&nbsp;&nbsp;</Link></button>
           </div>
-        </a> 
+        </button>
+        <button class="logout-right"><Link to='/'>Logout</Link></button> 
     </div>
 
     </nav>);

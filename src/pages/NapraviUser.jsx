@@ -2,30 +2,46 @@ import React from 'react';
 
 function NapraviUser() {
 
-    var post = { "naslov":"","tekst":"", "lajkovi":0,"datum_postavljanja":"" }
+    var user = { "ime":"","prezime":"", "username":"","datum_rodjenja":"","datum_pravljenja_naloga":"","password":"" }
 
-    const naslovChange = (event) => {
-       post["naslov"] = event.target.value
+    const imeChange = (event) => {
+       user["ime"] = event.target.value
     }
 
-    const tekstChange = (event) => {
-        post["tekst"] = event.target.value
-     }
+    const prezimeChange = (event) => {
+        user["prezime"] = event.target.value
+    }
+
+    const usernameChange = (event) => {
+        user["username"] = event.target.value
+    }
+
+    const passwordChange = (event) => {
+        user["password"] = event.target.value
+    }
 
     function Klik(){
-        post["datum_postavljanja"] = Date()
-        alert(JSON.stringify(post))
+        user["datum_rodjenja"] = Date()
+        user["datum_pravljenja_naloga"] = Date()
+        alert(JSON.stringify(user))
     }
+
 
     return (<>
     <form class="okolina">
-        <label>Naslov</label>
-        <input type="text" onChange={naslovChange}/>
+        <label>Ime</label>
+        <input type="text" onChange={imeChange}/>
 
-        <label>Tekst</label>
-        <input type="text" onChange={tekstChange}/>
+        <label>Prezime</label>
+        <input type="text" onChange={prezimeChange}/>
+
+        <label>Username</label>
+        <input type="text" onChange={usernameChange}/>
+
+        <label>Password</label>
+        <input type="password" onChange={passwordChange}/>
     
-        <input type="submit" value="Submit" onClick={Klik}/>
+        <input type="submit" value="Create" onClick={Klik}/>
     </form>
     </>);
 }

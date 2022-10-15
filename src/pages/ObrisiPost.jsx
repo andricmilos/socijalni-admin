@@ -64,7 +64,7 @@ function ObrisiPost() {
         <label>Datum filter</label>
         <input type="date" onChange={datumChange} disabled={datumEnabled}/>
     
-        <input type="submit" value="Submit" onClick={Klik}/>
+        <input type="submit" value="Delete" onClick={Klik}/>
     </form>
     </>);
 }
