@@ -1,4 +1,3 @@
-import { ReactDOM } from "react-dom";
 import {BrowserRouter,Route,Routes} from 'react-router-dom'; 
 import Layout from './pages/Layout';
 import NoPage from './pages/NoPage';
@@ -10,6 +9,8 @@ import NapraviUser from './pages/NapraviUser';
 import IzmeniUser from "./pages/IzmeniUser";
 import ObrisiUser from "./pages/ObrisiUser";
 import Login from "./pages/Login";
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
         <Route path="/" element={<Layout/>}>
             <Route index element={<Home/>}/>
             <Route path="login" element={<Login/>}/>
+            <Route path="forgotpassword" element={<ForgotPassword/>}/>
+            <Route path="resetpassword/:value" element={<ResetPassword/>}/>
             <Route path="user/napravi" element={<NapraviUser/>}/>
             <Route path="user/izmeni" element={<IzmeniUser/>}/>
             <Route path="user/obrisi" element={<ObrisiUser/>}/>
