@@ -11,6 +11,8 @@ import ObrisiUser from "./pages/ObrisiUser";
 import Login from "./pages/Login";
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import Test from './pages/Test';
+
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout/>}>
+            <Route path='test' element={<Test/>}/>
             <Route index element={<Home/>}/>
             <Route path="login" element={<Login/>}/>
             <Route path="forgotpassword" element={<ForgotPassword/>}/>
@@ -34,5 +37,6 @@ function App() {
     </BrowserRouter>
   );
 }
+
 
 export default App;
