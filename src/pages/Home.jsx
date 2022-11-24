@@ -1,19 +1,32 @@
 import React from 'react';
-import data from "../data.json"
 import Table from '../Table';
 
 function Home() {
 
-  const getHeadings = () => {
+  var test=[];
 
-    return Object.keys(data[0]);
+  fetch("http://localhost:8080/api/user/svi")
+  .then(response => response.json())
+  .then((jsonData) => {
+    // jsonData is parsed json object received from url
+    console.log(jsonData+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    test=jsonData;
+  })
+  .catch((error) => {
+    // handle your errors here
+    console.error(error)
+  })
+
+  const getHeadings = (nesto) => {
+
+    return Object.keys(nesto[0]);
 }
 
 
     return (<>
       <h1>User</h1>
 
-      <Table theadData={getHeadings()} tbodyData={data}/>
+      <Table theadData={getHeadings(test)} tbodyData={test}/>
 
 
 <h1>Post</h1>
