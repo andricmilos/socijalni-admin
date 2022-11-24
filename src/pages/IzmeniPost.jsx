@@ -6,27 +6,27 @@ function IzmeniPost() {
     const [tekstEnabled, setTekstEnabled] = useState(true);
     const [lajkoviEnabled, setLajkoviEnabled] = useState(true);
     const [datumEnabled, setDatumEnabled] = useState(true);
-    var post = { "naslov":"","tekst":"", "lajkovi":0,"datum_postavljanja":"" } //koristi se za formiranje uslova za izmenu
-    var postValue = { "naslov":"","tekst":"", "lajkovi":0,"datum_postavljanja":"" }
+    var post = { "naslov": "", "tekst": "", "lajkovi": 0, "datum_postavljanja": "" } //koristi se za formiranje uslova za izmenu
+    var postValue = { "naslov": "", "tekst": "", "lajkovi": 0, "datum_postavljanja": "" }
 
     const naslovChange = (event) => {
-       post["naslov"] = event.target.value
+        post["naslov"] = event.target.value
     }
 
     const checkNaslovEnable = (event) => {
-        setNaslovEnabled(!naslovEnabled) 
+        setNaslovEnabled(!naslovEnabled)
     }
 
     const checkTekstEnabled = (event) => {
-        setTekstEnabled(!tekstEnabled) 
+        setTekstEnabled(!tekstEnabled)
     }
 
     const checkLajkoviEnabled = (event) => {
-        setLajkoviEnabled(!lajkoviEnabled) 
+        setLajkoviEnabled(!lajkoviEnabled)
     }
 
     const checkDatumEnabled = (event) => {
-        setDatumEnabled(!datumEnabled) 
+        setDatumEnabled(!datumEnabled)
     }
 
     const tekstChange = (event) => {
@@ -59,37 +59,37 @@ function IzmeniPost() {
         postValue["datum_postavljanja"] = event.target.value
     }
 
-    function Klik(){
+    function Klik() {
         //post["datum_postavljanja"] = Date()
         alert(JSON.stringify(post))
         alert(JSON.stringify(postValue))
     }
 
     return (<>
-    <p class="instrukcije">Instrukcije za koriscenje alata: aktivirati filtere i uneti po kom kriterijumu da se brisu svi elementi u bazi koji ispunjavaju dati uslov.</p>
-    <form class="okolina">
-        <input type="checkbox" onChange={checkNaslovEnable}/>
-        <label> Naslov filter</label>
-        <input type="text" onChange={naslovChange} disabled={naslovEnabled}/>
-        <input type="text" onChange={naslovChangeValue} disabled={naslovEnabled}/>
+        <p class="instrukcije">Instrukcije za koriscenje alata: aktivirati filtere i uneti po kom kriterijumu da se brisu svi elementi u bazi koji ispunjavaju dati uslov.</p>
+        <form class="okolina">
+            <input type="checkbox" onChange={checkNaslovEnable} />
+            <label> Naslov filter</label>
+            <input type="text" onChange={naslovChange} disabled={naslovEnabled} />
+            <input type="text" onChange={naslovChangeValue} disabled={naslovEnabled} />
 
-        <input type="checkbox" onChange={checkTekstEnabled}/>
-        <label>Tekst filter</label>
-        <input type="text" onChange={tekstChange} disabled={tekstEnabled}/>
-        <input type="text" onChange={tekstChangeValue} disabled={tekstEnabled}/>
+            <input type="checkbox" onChange={checkTekstEnabled} />
+            <label>Tekst filter</label>
+            <input type="text" onChange={tekstChange} disabled={tekstEnabled} />
+            <input type="text" onChange={tekstChangeValue} disabled={tekstEnabled} />
 
-        <input type="checkbox" onChange={checkLajkoviEnabled}/>
-        <label>Lajkovi filter</label>
-        <input type="number" onChange={lajkoviChange} disabled={lajkoviEnabled}/>
-        <input type="number" onChange={lajkoviChangeValue} disabled={lajkoviEnabled}/>
+            <input type="checkbox" onChange={checkLajkoviEnabled} />
+            <label>Lajkovi filter</label>
+            <input type="number" onChange={lajkoviChange} disabled={lajkoviEnabled} />
+            <input type="number" onChange={lajkoviChangeValue} disabled={lajkoviEnabled} />
 
-        <input type="checkbox" onChange={checkDatumEnabled}/>
-        <label>Datum filter</label>
-        <input type="date" onChange={datumChange} disabled={datumEnabled}/>
-        <input type="date" onChange={datumChangeValue} disabled={datumEnabled}/>
-    
-        <input type="submit" value="Save" onClick={Klik}/>
-    </form>
+            <input type="checkbox" onChange={checkDatumEnabled} />
+            <label>Datum filter</label>
+            <input type="date" onChange={datumChange} disabled={datumEnabled} />
+            <input type="date" onChange={datumChangeValue} disabled={datumEnabled} />
+
+            <input type="submit" value="Save" onClick={Klik} />
+        </form>
     </>);
 }
 
