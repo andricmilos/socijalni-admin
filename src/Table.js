@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-var delUrl2;
 
 function ulepsaj(string) {
   return (string.charAt(0).toUpperCase() + string.slice(1)).replaceAll("_", " ");
@@ -18,10 +17,10 @@ const getHeadings = (nesto) => {
   return Object.keys(nesto[0]);
 }
 
-const obrisi = (nesto) => {
+const obrisi = (nesto,url) => {
   const formData = new FormData();
     formData.append('id', nesto);
-  fetch(delUrl2, {  method: 'DELETE', mode: 'cors', credentials: 'include', body: formData })
+  fetch(url, {  method: 'DELETE', mode: 'cors', credentials: 'include', body: formData })
       .then(response => response)
       .then((jsonData) => {
         // console.log(jsonData)
@@ -34,7 +33,6 @@ const obrisi = (nesto) => {
 }
 
 export default function Table({ url, delUrl }) {
-  delUrl2= delUrl;
 
   const [podaci, setPodaci] = useState([{ "loading": "Loading" }]);
   var tbodyData = podaci
@@ -45,7 +43,14 @@ export default function Table({ url, delUrl }) {
       .then(response => response.json())
       .then((jsonData) => {
         // console.log(jsonData)
-        setPodaci(jsonData)
+        if(jsonData[0]==null)
+        {
+          setPodaci([{ "no value": "No data" }])
+        }
+        else
+        {
+          setPodaci(jsonData)
+        }
       }) 
       .catch((error) => {
         setPodaci([{ "error": "Error" }])
@@ -73,7 +78,7 @@ export default function Table({ url, delUrl }) {
               }
               return <td key={row[key]}>{ulepsajDatum(row[key], key)}</td>
             })}
-            <td><button value={id} onClick={() => { obrisi(id); }}>Obrisi</button></td>
+            <td><button value={id} onClick={() => { obrisi(id,delUrl); }}>Obrisi</button></td>
             <td><a href="">Izmeni</a></td>
           </tr>
         })}

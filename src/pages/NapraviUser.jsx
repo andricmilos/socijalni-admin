@@ -2,7 +2,11 @@ import React from 'react';
 
 function NapraviUser() {
 
-    var user = { "ime":"","prezime":"", "username":"","datum_rodjenja":"","datum_pravljenja_naloga":"","password":"" }
+    var user = { "email":"","ime":"","prezime":"", "username":"","datum_rodjenja":"","datum_pravljenja_naloga":"","password":"" }
+
+    const emailChange = (event) => {
+        user["email"] = event.target.value
+     }
 
     const imeChange = (event) => {
        user["ime"] = event.target.value
@@ -28,20 +32,28 @@ function NapraviUser() {
 
 
     return (<>
-    <form class="okolina">
+    <form class="okolina" method='POST' action='http://localhost:8080/api/user/add'>
+        <label>Email</label>
+        <input type="email" name="email" onChange={emailChange}/>
+
         <label>Ime</label>
-        <input type="text" onChange={imeChange}/>
+        <input type="text" name="ime" onChange={imeChange}/>
 
         <label>Prezime</label>
-        <input type="text" onChange={prezimeChange}/>
+        <input type="text" name="prezime" onChange={prezimeChange}/>
+
+        <label>Datum rodjenja filter</label>
+        <input type="date" name="datum_rodjenja"/>
 
         <label>Username</label>
-        <input type="text" onChange={usernameChange}/>
+        <input type="text" name="username" onChange={usernameChange}/>
 
         <label>Password</label>
-        <input type="password" onChange={passwordChange}/>
+        <input type="password" name="password" onChange={passwordChange}/>
+
+        <input type="hidden" value={new Date().toLocaleString()} name="datum_pravljenja_naloga"/>
     
-        <input type="submit" value="Create" onClick={Klik}/>
+        <input type="submit" value="Create"/>
     </form>
     </>);
 }
