@@ -18,14 +18,18 @@ function NapraviPost() {
     }
 
     return (<>
-    <form class="okolina">
+    <form class="okolina" method='POST' action='http://localhost:8080/api/post/add'>
         <label>Naslov</label>
-        <input type="text" onChange={naslovChange}/>
+        <input type="text" name="naslov" onChange={naslovChange}/>
 
         <label>Tekst</label>
-        <input type="text" onChange={tekstChange}/>
+        <input type="text" name="tekst" onChange={tekstChange}/>
+
+        <input type="hidden" value={0} name="lajkovi"/>
+
+        <input type="hidden" value={new Date().toLocaleString()} name="datum_postavljanja"/>
     
-        <input type="submit" value="Create" onClick={Klik}/>
+        <input type="submit" value="Create"/>
     </form>
     </>);
 }

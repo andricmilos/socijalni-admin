@@ -42,7 +42,7 @@ function NapraviUser() {
         <label>Prezime</label>
         <input type="text" name="prezime" onChange={prezimeChange}/>
 
-        <label>Datum rodjenja filter</label>
+        <label>Datum rodjenja</label>
         <input type="date" name="datum_rodjenja"/>
 
         <label>Username</label>
