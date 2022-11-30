@@ -1,8 +1,16 @@
-import React from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Link, useLocation  } from 'react-router-dom';
 import Navbarcss from './Navbar.css';
+import validateLogin from './LoginValidate';
 
 function Navbar() {
+  const location = useLocation();
+  console.log(location)
+  if (location.pathname != '/login') {
+    validateLogin();
+  }
+    
+
   return (<nav>
     <div class="navbar">
       <button><Link to='/'>Pocetna</Link></button>
@@ -26,7 +34,7 @@ function Navbar() {
           <button><Link to='/user/obrisi'>Obrisi&nbsp;&nbsp;&nbsp;</Link></button>
         </div>
       </button>
-      <button class="logout-right"><Link to='/'>Logout</Link></button>
+      <button class="logout-right"><Link to='/logout'>Logout</Link></button>
     </div>
 
   </nav>);

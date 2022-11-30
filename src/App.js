@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import Test from './pages/Test';
+import Logout from './pages/Logout';
 
 
 
@@ -23,6 +24,7 @@ function App() {
             <Route path='test' element={<Test/>}/>
             <Route index element={<Home/>}/>
             <Route path="login" element={<Login/>}/>
+            <Route path="logout" element={<Logout/>}/>
             <Route path="forgotpassword" element={<ForgotPassword/>}/>
             <Route path="resetpassword/:value" element={<ResetPassword/>}/>
             <Route path="user/napravi" element={<NapraviUser/>}/>
