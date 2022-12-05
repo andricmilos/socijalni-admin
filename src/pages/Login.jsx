@@ -10,15 +10,8 @@ function Login() {
             <input type="password" placeholder="Enter Password" name="password" required/>
                 
             <button class='login-button' type="submit">Login</button>
-            <label>
-            <input type="checkbox" name="remember"/> Remember me
-            </label>
         </form>
 
-    <div class="container2">
-        <button type="button" class="cancelbtn">Cancel</button>
-        <span class="psw">Forgot <a href="/forgotpassword">password?</a></span>
-    </div>
     </>);
 }
 

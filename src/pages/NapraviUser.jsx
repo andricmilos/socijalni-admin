@@ -1,4 +1,5 @@
 import React from 'react';
+import requestPost from '../RequestPost';
 
 function NapraviUser() {
 
@@ -24,15 +25,19 @@ function NapraviUser() {
         user["password"] = event.target.value
     }
 
+    const datumRodjenjaChange = (event) => {
+        user["datum_rodjenja"] = event.target.value
+    }
+
     function Klik(){
-        user["datum_rodjenja"] = Date()
-        user["datum_pravljenja_naloga"] = Date()
-        alert(JSON.stringify(user))
+        user["datum_pravljenja_naloga"] = new Date().toLocaleString()
+        requestPost('http://localhost:8080/api/user/add',user)
+        //alert(JSON.stringify(user))
     }
 
 
     return (<>
-    <form class="okolina" method='POST' action='http://localhost:8080/api/user/add'>
+    <form class="okolina">
         <label>Email</label>
         <input type="email" name="email" onChange={emailChange}/>
 
@@ -43,17 +48,15 @@ function NapraviUser() {
         <input type="text" name="prezime" onChange={prezimeChange}/>
 
         <label>Datum rodjenja</label>
-        <input type="date" name="datum_rodjenja"/>
+        <input type="date" name="datum_rodjenja" onChange={datumRodjenjaChange}/>
 
         <label>Username</label>
         <input type="text" name="username" onChange={usernameChange}/>
 
         <label>Password</label>
         <input type="password" name="password" onChange={passwordChange}/>
-
-        <input type="hidden" value={new Date().toLocaleString()} name="datum_pravljenja_naloga"/>
     
-        <input type="submit" value="Create"/>
+        <button type='button' onClick={() => {Klik()}}>Create</button>
     </form>
     </>);
 }
