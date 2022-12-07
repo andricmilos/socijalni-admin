@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function ulepsaj(string) {
@@ -58,6 +59,8 @@ export default function Table({ url, delUrl }) {
       })
   }, []);
 
+  const navigate = useNavigate();
+
   return (
     <table id="tabela">
       <thead>
@@ -71,15 +74,17 @@ export default function Table({ url, delUrl }) {
       <tbody>
         {tbodyData.map((row, index) => {
           var id;
+          var param = []
           return <tr key={index}>
             {theadData.map((key, index) => {
               if(key=='id'){
                 id=row[key];
               }
+              param.push(row[key]);
               return <td key={row[key]}>{ulepsajDatum(row[key], key)}</td>
             })}
             <td><button value={id} onClick={() => { obrisi(id,delUrl); }}>Obrisi</button></td>
-            <td><a href="">Izmeni</a></td>
+            <td><button value={id} onClick={() => {navigate('/user/izmeni', {state:{vrednosti:param}})}}>Izmeni</button></td>
           </tr>
         })}
       </tbody>
