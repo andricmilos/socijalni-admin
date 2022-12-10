@@ -4,7 +4,7 @@ import requestPost from '../RequestPost';
 
 function IzmeniUser() {
     const location = useLocation();
-    console.log(location.state.vrednosti)
+    console.log(location.state.vrednosti[5])
     var user = { "email":"","ime":"","prezime":"", "username":"","datum_rodjenja":"","datum_pravljenja_naloga":"","password":"" }
 
     const emailChange = (event) => {
@@ -12,7 +12,7 @@ function IzmeniUser() {
      }
 
     const imeChange = (event) => {
-       user["ime"] = event.target.value
+        user["ime"] = event.target.value
     }
 
     const prezimeChange = (event) => {
@@ -30,6 +30,9 @@ function IzmeniUser() {
     const datumRodjenjaChange = (event) => {
         user["datum_rodjenja"] = event.target.value
     }
+   
+    const arr=location.state.vrednosti[5].split("T")
+    location.state.vrednosti[5]=arr[0]
 
     function Klik(){
         user["datum_pravljenja_naloga"] = new Date().toLocaleString()
@@ -38,28 +41,33 @@ function IzmeniUser() {
     }
 
 
-
     return (<>
-   <form class="okolina">
+   <form class="okolina" method='POST' action='http://localhost:8080/api/user/edit'>
         <label>Email</label>
-        <input type="email" value={location.state.vrednosti[1]} name="email" onChange={emailChange}/>
+        <input type="email" defaultValue={location.state.vrednosti[1]} name="email" onChange={emailChange}/>
 
         <label>Ime</label>
-        <input type="text" value={location.state.vrednosti[2]} name="ime" onChange={imeChange}/>
+        <input type="text" defaultValue={location.state.vrednosti[2]} name="ime" onChange={imeChange}/>
 
         <label>Prezime</label>
-        <input type="text" value={location.state.vrednosti[3]} name="prezime" onChange={prezimeChange}/>
+        <input type="text" defaultValue={location.state.vrednosti[3]} name="prezime"onChange={prezimeChange}/>
 
         <label>Datum rodjenja</label>
-        <input type="date" value={location.state.vrednosti[5]} name="datum_rodjenja" onChange={datumRodjenjaChange}/>
+        <input type="date" defaultValue={location.state.vrednosti[5]} name="datum_rodjenja" onChange={datumRodjenjaChange}/>
 
         <label>Username</label>
-        <input type="text" value={location.state.vrednosti[4]} name="username" onChange={usernameChange}/>
+        <input type="text" defaultValue={location.state.vrednosti[4]} name="username" onChange={usernameChange}/>
 
-        <label>Password</label>
-        <input type="password" value={location.state.vrednosti[7]} name="password" onChange={passwordChange}/>
+        <label>Password <br /><small>Ako ne zelite da promenite sifru ostavite prazno</small></label>
+        <input type="password" name="password" id='password' onChange={passwordChange}/>
+
+        <input type="hidden" name="kogaid" value={location.state.vrednosti[0]} />
+
+        <input type="hidden" name="datum_pravljenja_naloga" value={new Date().toLocaleString()} />
+
+        <input type="submit" value="Update" />
     
-        <button type='button' onClick={() => {Klik()}}>Create</button>
+        {/*<button type='button' onClick={() => {Klik()}}>Create</button>*/}
     </form>
     </>);
 }

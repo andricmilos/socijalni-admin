@@ -33,7 +33,22 @@ const obrisi = (nesto,url) => {
       })
 }
 
-export default function Table({ url, delUrl }) {
+const aktiviraj = (nesto,url) => {
+  const formData = new FormData();
+    formData.append('id', nesto);
+  fetch(url, {  method: 'POST', mode: 'cors', credentials: 'include', body: formData })
+      .then(response => response)
+      .then((jsonData) => {
+        // console.log(jsonData)
+       // setPodaci(jsonData)
+       window.location.reload(false);
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+}
+
+export default function Table({ url, delUrl, aktivirajUrl }) {
 
   const [podaci, setPodaci] = useState([{ "loading": "Loading" }]);
   var tbodyData = podaci
@@ -81,7 +96,19 @@ export default function Table({ url, delUrl }) {
                 id=row[key];
               }
               param.push(row[key]);
-              return <td key={row[key]}>{ulepsajDatum(row[key], key)}</td>
+              if(key=='aktiviran')
+              {
+                var vrednosti="Aktiviraj"
+                if(row[key]==true)
+                {
+                  vrednosti='Deaktiviraj'
+                }
+                return <td><button onClick={() => { aktiviraj(id,aktivirajUrl); }}>{vrednosti}</button></td>
+
+              }
+              else{
+                return <td key={row[key]}>{ulepsajDatum(row[key], key)}</td>
+              }
             })}
             <td><button value={id} onClick={() => { obrisi(id,delUrl); }}>Obrisi</button></td>
             <td><button value={id} onClick={() => {navigate('/user/izmeni', {state:{vrednosti:param}})}}>Izmeni</button></td>
