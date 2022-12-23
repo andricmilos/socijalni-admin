@@ -1,7 +1,9 @@
 import React from 'react';
+import {useLocation} from 'react-router-dom';
 import { useState } from 'react';
 
 function IzmeniPost() {
+    const location = useLocation();
     const [naslovEnabled, setNaslovEnabled] = useState(true);
     const [tekstEnabled, setTekstEnabled] = useState(true);
     const [lajkoviEnabled, setLajkoviEnabled] = useState(true);
@@ -58,6 +60,8 @@ function IzmeniPost() {
     const datumChangeValue = (event) => {
         postValue["datum_postavljanja"] = event.target.value
     }
+    const arr=location.state.vrednosti[4].split("T")
+    location.state.vrednosti[4]=arr[0]
 
     function Klik() {
         //post["datum_postavljanja"] = Date()
@@ -67,28 +71,22 @@ function IzmeniPost() {
 
     return (<>
         <p class="instrukcije">Instrukcije za koriscenje alata: aktivirati filtere i uneti po kom kriterijumu da se brisu svi elementi u bazi koji ispunjavaju dati uslov.</p>
-        <form class="okolina">
-            <input type="checkbox" onChange={checkNaslovEnable} />
-            <label> Naslov filter</label>
-            <input type="text" onChange={naslovChange} disabled={naslovEnabled} />
-            <input type="text" onChange={naslovChangeValue} disabled={naslovEnabled} />
+        <form class="okolina" method='POST' action='http://localhost:8080/api/post/edit'>
+            <label> Naslov</label>
+            <input type="text" defaultValue={location.state.vrednosti[1]} name="naslov" onChange={naslovChangeValue}/>
 
-            <input type="checkbox" onChange={checkTekstEnabled} />
-            <label>Tekst filter</label>
-            <input type="text" onChange={tekstChange} disabled={tekstEnabled} />
-            <input type="text" onChange={tekstChangeValue} disabled={tekstEnabled} />
+            <label>Tekst</label>
+            <input type="text" defaultValue={location.state.vrednosti[2]} name="tekst" onChange={tekstChangeValue}/>
 
-            <input type="checkbox" onChange={checkLajkoviEnabled} />
-            <label>Lajkovi filter</label>
-            <input type="number" onChange={lajkoviChange} disabled={lajkoviEnabled} />
-            <input type="number" onChange={lajkoviChangeValue} disabled={lajkoviEnabled} />
+            <label>Lajkovi</label>
+            <input type="number" defaultValue={location.state.vrednosti[3]} name="lajkovi" onChange={lajkoviChangeValue}/>
 
-            <input type="checkbox" onChange={checkDatumEnabled} />
-            <label>Datum filter</label>
-            <input type="date" onChange={datumChange} disabled={datumEnabled} />
-            <input type="date" onChange={datumChangeValue} disabled={datumEnabled} />
+            <label>Datum</label>
+            <input type="date" defaultValue={location.state.vrednosti[4]} name="datum_postavljanja" onChange={datumChangeValue}/>
 
-            <input type="submit" value="Save" onClick={Klik} />
+            <input type="hidden" name="kogaid" value={location.state.vrednosti[0]} />
+
+            <input type="submit" value="Save"/>
         </form>
     </>);
 }

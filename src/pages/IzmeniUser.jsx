@@ -4,7 +4,6 @@ import requestPost from '../RequestPost';
 
 function IzmeniUser() {
     const location = useLocation();
-    console.log(location.state.vrednosti[5])
     var user = { "email":"","ime":"","prezime":"", "username":"","datum_rodjenja":"","datum_pravljenja_naloga":"","password":"" }
 
     const emailChange = (event) => {

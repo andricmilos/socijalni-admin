@@ -48,7 +48,7 @@ const aktiviraj = (nesto,url) => {
       })
 }
 
-export default function Table({ url, delUrl, aktivirajUrl }) {
+export default function Table({ url, delUrl, aktivirajUrl, editP }) {
 
   const [podaci, setPodaci] = useState([{ "loading": "Loading" }]);
   var tbodyData = podaci
@@ -111,7 +111,7 @@ export default function Table({ url, delUrl, aktivirajUrl }) {
               }
             })}
             <td><button value={id} onClick={() => { obrisi(id,delUrl); }}>Obrisi</button></td>
-            <td><button value={id} onClick={() => {navigate('/user/izmeni', {state:{vrednosti:param}})}}>Izmeni</button></td>
+            <td><button value={id} onClick={() => {navigate(editP, {state:{vrednosti:param}})}}>Izmeni</button></td>
           </tr>
         })}
       </tbody>

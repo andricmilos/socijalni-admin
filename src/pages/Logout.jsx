@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function Logout() {
     var url = 'http://localhost:8080/logout'
