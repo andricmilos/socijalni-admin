@@ -1,36 +1,41 @@
 import React from 'react';
+import requestPost from '../RequestPost';
 
 function NapraviPost() {
 
-    var post = { "naslov":"","tekst":"", "lajkovi":0,"datum_postavljanja":"" }
+    var post = { "naslov": "", "tekst": "", "lajkovi": 0, "datum_postavljanja": "" }
 
     const naslovChange = (event) => {
-       post["naslov"] = event.target.value
+        post["naslov"] = event.target.value
     }
 
     const tekstChange = (event) => {
         post["tekst"] = event.target.value
-     }
+    }
 
-    function Klik(){
-        post["datum_postavljanja"] = Date()
-        alert(JSON.stringify(post))
+    const lajkoviChange = (event) => {
+        post["lajkovi"] = event.target.value
+    }
+
+    function Klik() {
+        post["datum_postavljanja"] = new Date().toLocaleString()
+        var vrednost = "?naslov=" + post['naslov'] + "&tekst=" + post['tekst'] + "&lajkovi=" + post['lajkovi'] + "&datum_postavljanja=" + post['datum_postavljanja'];
+        requestPost('http://localhost:8080/api/post/add', vrednost)
     }
 
     return (<>
-    <form class="okolina" method='POST' action='http://localhost:8080/api/post/add'>
-        <label>Naslov</label>
-        <input type="text" name="naslov" onChange={naslovChange}/>
+        <form class="okolina">
+            <label>Naslov</label>
+            <input type="text" name="naslov" onChange={naslovChange} />
 
-        <label>Tekst</label>
-        <input type="text" name="tekst" onChange={tekstChange}/>
+            <label>Tekst</label>
+            <input type="text" name="tekst" onChange={tekstChange} />
 
-        <input type="hidden" value={0} name="lajkovi"/>
+            <label>Lajkovi</label>
+            <input type="number" name="lajkovi" onChange={lajkoviChange} />
 
-        <input type="hidden" value={new Date().toLocaleString()} name="datum_postavljanja"/>
-    
-        <input type="submit" value="Create"/>
-    </form>
+            <button type='button' onClick={() => { Klik() }}>Create</button>
+        </form>
     </>);
 }
 

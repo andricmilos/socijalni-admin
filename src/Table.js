@@ -39,8 +39,6 @@ const aktiviraj = (nesto,url) => {
   fetch(url, {  method: 'POST', mode: 'cors', credentials: 'include', body: formData })
       .then(response => response)
       .then((jsonData) => {
-        // console.log(jsonData)
-       // setPodaci(jsonData)
        window.location.reload(false);
       })
       .catch((error) => {
@@ -58,7 +56,6 @@ export default function Table({ url, delUrl, aktivirajUrl, editP }) {
     fetch(url, { mode: 'cors', credentials: 'include' })
       .then(response => response.json())
       .then((jsonData) => {
-        // console.log(jsonData)
         if(jsonData[0]==null)
         {
           setPodaci([{ "no value": "No data" }])
@@ -83,7 +80,7 @@ export default function Table({ url, delUrl, aktivirajUrl, editP }) {
           {theadData.map(heading => {
             return <th key={heading}>{ulepsaj(heading)}</th>
           })}
-          <th colspan="2">Action</th>
+          <th colSpan="2">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -103,7 +100,7 @@ export default function Table({ url, delUrl, aktivirajUrl, editP }) {
                 {
                   vrednosti='Deaktiviraj'
                 }
-                return <td><button onClick={() => { aktiviraj(id,aktivirajUrl); }}>{vrednosti}</button></td>
+                return <td key={row[key]}><button onClick={() => { aktiviraj(id,aktivirajUrl); }}>{vrednosti}</button></td>
 
               }
               else{

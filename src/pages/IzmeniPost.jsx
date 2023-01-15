@@ -70,8 +70,8 @@ function IzmeniPost() {
     }
 
     return (<>
-        <p class="instrukcije">Instrukcije za koriscenje alata: aktivirati filtere i uneti po kom kriterijumu da se brisu svi elementi u bazi koji ispunjavaju dati uslov.</p>
-        <form class="okolina" method='POST' action='http://localhost:8080/api/post/edit'>
+        <p className="instrukcije">Instrukcije za koriscenje alata: aktivirati filtere i uneti po kom kriterijumu da se brisu svi elementi u bazi koji ispunjavaju dati uslov.</p>
+        <form className="okolina" method='POST' action='http://localhost:8080/api/post/edit'>
             <label> Naslov</label>
             <input type="text" defaultValue={location.state.vrednosti[1]} name="naslov" onChange={naslovChangeValue}/>
 

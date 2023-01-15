@@ -1,14 +1,21 @@
+import axios from 'axios'
 
-export default function requestPost(url,json){
-    fetch(url, {  method: 'POST', mode: 'cors', credentials: 'include', body: json })
-      .then((response) => {
-        // console.log(response.url)
-        alert(response)
-        console.log(response)
-      }) 
-      .catch((error) => {
-        //console.error(error)
-        alert("test")
-      });
-    
+export default function requestPost(url, json) {
+
+
+  axios.get(
+    url + json,
+    { withCredentials: true },
+    {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      "Access-Control-Allow-Origin": "*",
+    }
+  ).then(response => {
+    alert(response.data);
+  })
+    .catch(error => {
+      alert(error);
+    }
+    )
 }

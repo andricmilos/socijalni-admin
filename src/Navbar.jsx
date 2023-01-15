@@ -11,25 +11,25 @@ function Navbar() {
     
 
   return (<nav>
-    <div class="navbar">
+    <div className="navbar">
       <button><Link to='/'>Pocetna</Link></button>
-      <button class="dropdown">
-        <button class="dropbtn">Post
-          <i class="fa fa-caret-down"></i>
+      <div className="dropdown perica ilija">
+        <button className="dropbtn">Post
+          <i className="fa fa-caret-down"></i>
         </button>
-        <div class="dropdown-content">
+        <div className="dropdown-content">
           <button><Link to='/post/napravi'>Napravi</Link></button>
         </div>
-      </button>
-      <button class="dropdown">
-        <button class="dropbtn">User
-          <i class="fa fa-caret-down"></i>
+      </div>
+      <div className="dropdown perica ilija">
+        <button className="dropbtn">User
+          <i className="fa fa-caret-down"></i>
         </button>
-        <div class="dropdown-content">
+        <div className="dropdown-content">
           <button><Link to='/user/napravi'>Napravi</Link></button>
         </div>
-      </button>
-      <button class="logout-right"><Link to='/logout'>Logout</Link></button>
+      </div>
+      <button className="logout-right"><Link to='/logout'>Logout</Link></button>
     </div>
 
   </nav>);

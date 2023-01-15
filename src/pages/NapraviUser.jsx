@@ -3,14 +3,14 @@ import requestPost from '../RequestPost';
 
 function NapraviUser() {
 
-    var user = { "email":"","ime":"","prezime":"", "username":"","datum_rodjenja":"","datum_pravljenja_naloga":"","password":"" }
+    var user = { "email": "", "ime": "", "prezime": "", "username": "", "datum_rodjenja": "", "datum_pravljenja_naloga": "", "password": "" }
 
     const emailChange = (event) => {
         user["email"] = event.target.value
-     }
+    }
 
     const imeChange = (event) => {
-       user["ime"] = event.target.value
+        user["ime"] = event.target.value
     }
 
     const prezimeChange = (event) => {
@@ -29,35 +29,35 @@ function NapraviUser() {
         user["datum_rodjenja"] = event.target.value
     }
 
-    function Klik(){
+    function Klik() {
         user["datum_pravljenja_naloga"] = new Date().toLocaleString()
-        requestPost('http://localhost:8080/api/user/add',user)
-        //alert(JSON.stringify(user))
+        var vrednost = "?email=" + user['email'] + "&ime=" + user['ime'] + "&prezime=" + user['prezime'] + "&username=" + user['username'] + "&datum_rodjenja=" + user['datum_rodjenja'] + "&datum_pravljenja_naloga=" + user['datum_pravljenja_naloga'] + "&password=" + user['password'];
+        requestPost('http://localhost:8080/api/user/add', vrednost)
     }
 
 
     return (<>
-    <form class="okolina">
-        <label>Email</label>
-        <input type="email" name="email" onChange={emailChange}/>
+        <form class="okolina">
+            <label>Email</label>
+            <input type="email" name="email" onChange={emailChange} />
 
-        <label>Ime</label>
-        <input type="text" name="ime" onChange={imeChange}/>
+            <label>Ime</label>
+            <input type="text" name="ime" onChange={imeChange} />
 
-        <label>Prezime</label>
-        <input type="text" name="prezime" onChange={prezimeChange}/>
+            <label>Prezime</label>
+            <input type="text" name="prezime" onChange={prezimeChange} />
 
-        <label>Datum rodjenja</label>
-        <input type="date" name="datum_rodjenja" onChange={datumRodjenjaChange}/>
+            <label>Datum rodjenja</label>
+            <input type="date" name="datum_rodjenja" onChange={datumRodjenjaChange} />
 
-        <label>Username</label>
-        <input type="text" name="username" onChange={usernameChange}/>
+            <label>Username</label>
+            <input type="text" name="username" onChange={usernameChange} />
 
-        <label>Password</label>
-        <input type="password" name="password" onChange={passwordChange}/>
-    
-        <button type='button' onClick={() => {Klik()}}>Create</button>
-    </form>
+            <label>Password</label>
+            <input type="password" name="password" onChange={passwordChange} />
+
+            <button type='button' onClick={() => { Klik() }}>Create</button>
+        </form>
     </>);
 }
 
