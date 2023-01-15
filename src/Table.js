@@ -18,32 +18,32 @@ const getHeadings = (nesto) => {
   return Object.keys(nesto[0]);
 }
 
-const obrisi = (nesto,url) => {
+const obrisi = (nesto, url) => {
   const formData = new FormData();
-    formData.append('id', nesto);
-  fetch(url, {  method: 'DELETE', mode: 'cors', credentials: 'include', body: formData })
-      .then(response => response)
-      .then((jsonData) => {
-        // console.log(jsonData)
-       // setPodaci(jsonData)
-       window.location.reload(false);
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+  formData.append('id', nesto);
+  fetch(url, { method: 'DELETE', mode: 'cors', credentials: 'include', body: formData })
+    .then(response => response)
+    .then((jsonData) => {
+      // console.log(jsonData)
+      // setPodaci(jsonData)
+      window.location.reload(false);
+    })
+    .catch((error) => {
+      console.error(error)
+    })
 }
 
-const aktiviraj = (nesto,url) => {
+const aktiviraj = (nesto, url) => {
   const formData = new FormData();
-    formData.append('id', nesto);
-  fetch(url, {  method: 'POST', mode: 'cors', credentials: 'include', body: formData })
-      .then(response => response)
-      .then((jsonData) => {
-       window.location.reload(false);
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+  formData.append('id', nesto);
+  fetch(url, { method: 'POST', mode: 'cors', credentials: 'include', body: formData })
+    .then(response => response)
+    .then((jsonData) => {
+      window.location.reload(false);
+    })
+    .catch((error) => {
+      console.error(error)
+    })
 }
 
 export default function Table({ url, delUrl, aktivirajUrl, editP }) {
@@ -56,15 +56,13 @@ export default function Table({ url, delUrl, aktivirajUrl, editP }) {
     fetch(url, { mode: 'cors', credentials: 'include' })
       .then(response => response.json())
       .then((jsonData) => {
-        if(jsonData[0]==null)
-        {
+        if (jsonData[0] == null) {
           setPodaci([{ "no value": "No data" }])
         }
-        else
-        {
+        else {
           setPodaci(jsonData)
         }
-      }) 
+      })
       .catch((error) => {
         setPodaci([{ "error": "Error" }])
         console.error(error)
@@ -89,26 +87,24 @@ export default function Table({ url, delUrl, aktivirajUrl, editP }) {
           var param = []
           return <tr key={index}>
             {theadData.map((key, index) => {
-              if(key=='id'){
-                id=row[key];
+              if (key == 'id') {
+                id = row[key];
               }
               param.push(row[key]);
-              if(key=='aktiviran')
-              {
-                var vrednosti="Aktiviraj"
-                if(row[key]==true)
-                {
-                  vrednosti='Deaktiviraj'
+              if (key == 'aktiviran') {
+                var vrednosti = "Aktiviraj"
+                if (row[key] == true) {
+                  vrednosti = 'Deaktiviraj'
                 }
-                return <td key={row[key]}><button onClick={() => { aktiviraj(id,aktivirajUrl); }}>{vrednosti}</button></td>
+                return <td key={row[key]}><button onClick={() => { aktiviraj(id, aktivirajUrl); }}>{vrednosti}</button></td>
 
               }
-              else{
+              else {
                 return <td key={row[key]}>{ulepsajDatum(row[key], key)}</td>
               }
             })}
-            <td><button value={id} onClick={() => { obrisi(id,delUrl); }}>Obrisi</button></td>
-            <td><button value={id} onClick={() => {navigate(editP, {state:{vrednosti:param}})}}>Izmeni</button></td>
+            <td><button value={id} onClick={() => { obrisi(id, delUrl); }}>Obrisi</button></td>
+            <td><button value={id} onClick={() => { navigate(editP, { state: { vrednosti: param } }) }}>Izmeni</button></td>
           </tr>
         })}
       </tbody>

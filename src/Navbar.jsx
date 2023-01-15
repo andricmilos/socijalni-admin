@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, useLocation  } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Navbarcss from './Navbar.css';
 import validateLogin from './LoginValidate';
 
@@ -8,7 +8,7 @@ function Navbar() {
   if (location.pathname != '/login') {
     validateLogin();
   }
-    
+
 
   return (<nav>
     <div className="navbar">

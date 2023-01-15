@@ -10,9 +10,9 @@ function Home() {
 
   return (<>
     <h1>User</h1>
-    <Table url={urlUser} delUrl={urlUserDel} aktivirajUrl={urlUserAktiviraj} editP={"/user/izmeni"}/>
+    <Table url={urlUser} delUrl={urlUserDel} aktivirajUrl={urlUserAktiviraj} editP={"/user/izmeni"} />
     <h1>Post</h1>
-    <Table url={urlPost} delUrl={urlPostDel} editP={"/post/izmeni"}/>
+    <Table url={urlPost} delUrl={urlPostDel} editP={"/post/izmeni"} />
   </>);
 }
 
