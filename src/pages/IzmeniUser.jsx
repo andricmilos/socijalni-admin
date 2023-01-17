@@ -4,7 +4,7 @@ import requestPost from '../RequestPost';
 
 function IzmeniUser() {
     const location = useLocation();
-    var user = { "email": "", "ime": "", "prezime": "", "username": "", "datum_rodjenja": "", "datum_pravljenja_naloga": "", "password": "" }
+    var user = { "kogaid": "", "email": "", "ime": "", "prezime": "", "username": "", "datum_rodjenja": "", "datum_pravljenja_naloga": "", "password": "" }
 
     const emailChange = (event) => {
         user["email"] = event.target.value
@@ -35,13 +35,20 @@ function IzmeniUser() {
 
     function Klik() {
         user["datum_pravljenja_naloga"] = new Date().toLocaleString()
-        requestPost('http://localhost:8080/api/user/add', user)
-        //alert(JSON.stringify(user))
+        user["kogaid"] = location.state.vrednosti[0]
+        var vrednost = "?kogaid=" + user['kogaid'] + "&email=" + user['email'] + "&ime=" + user['ime'] + "&prezime=" + user['prezime'] + "&username=" + user['username'] + "&datum_rodjenja=" + user['datum_rodjenja'] + "&datum_pravljenja_naloga=" + user['datum_pravljenja_naloga'] + "&password=" + user['password'];
+        requestPost('http://localhost:8080/api/user/edit', vrednost)
     }
 
+    //postovljanje prosledjenih vrednosti u bafer
+    user['email'] = location.state.vrednosti[1];
+    user['ime'] = location.state.vrednosti[2];
+    user['prezime'] = location.state.vrednosti[3];
+    user['username'] = location.state.vrednosti[4];
+    user['datum_rodjenja'] = location.state.vrednosti[5];
 
     return (<>
-        <form class="okolina" method='POST' action='http://localhost:8080/api/user/edit'>
+        <form class="okolina">
             <label>Email</label>
             <input type="email" defaultValue={location.state.vrednosti[1]} name="email" onChange={emailChange} />
 
@@ -60,13 +67,7 @@ function IzmeniUser() {
             <label>Password <br /><small>Ako ne zelite da promenite sifru ostavite prazno</small></label>
             <input type="password" name="password" id='password' onChange={passwordChange} />
 
-            <input type="hidden" name="kogaid" value={location.state.vrednosti[0]} />
-
-            <input type="hidden" name="datum_pravljenja_naloga" value={new Date().toLocaleString()} />
-
-            <input type="submit" value="Update" />
-
-            {/*<button type='button' onClick={() => {Klik()}}>Create</button>*/}
+            <button type='button' onClick={() => { Klik() }}>Create</button>
         </form>
     </>);
 }

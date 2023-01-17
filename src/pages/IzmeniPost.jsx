@@ -1,49 +1,11 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import requestPost from '../RequestPost';
 
 function IzmeniPost() {
     const location = useLocation();
-    const [naslovEnabled, setNaslovEnabled] = useState(true);
-    const [tekstEnabled, setTekstEnabled] = useState(true);
-    const [lajkoviEnabled, setLajkoviEnabled] = useState(true);
-    const [datumEnabled, setDatumEnabled] = useState(true);
-    var post = { "naslov": "", "tekst": "", "lajkovi": 0, "datum_postavljanja": "" } //koristi se za formiranje uslova za izmenu
     var postValue = { "naslov": "", "tekst": "", "lajkovi": 0, "datum_postavljanja": "" }
-
-    const naslovChange = (event) => {
-        post["naslov"] = event.target.value
-    }
-
-    const checkNaslovEnable = (event) => {
-        setNaslovEnabled(!naslovEnabled)
-    }
-
-    const checkTekstEnabled = (event) => {
-        setTekstEnabled(!tekstEnabled)
-    }
-
-    const checkLajkoviEnabled = (event) => {
-        setLajkoviEnabled(!lajkoviEnabled)
-    }
-
-    const checkDatumEnabled = (event) => {
-        setDatumEnabled(!datumEnabled)
-    }
-
-    const tekstChange = (event) => {
-        post["tekst"] = event.target.value
-    }
-
-    const lajkoviChange = (event) => {
-        post["lajkovi"] = event.target.value
-    }
-
-    const datumChange = (event) => {
-        post["datum_postavljanja"] = event.target.value
-    }
-
-    /*------------------------------------------*/
 
     const naslovChangeValue = (event) => {
         postValue["naslov"] = event.target.value
@@ -64,13 +26,21 @@ function IzmeniPost() {
     location.state.vrednosti[4] = arr[0]
 
     function Klik() {
-        alert(JSON.stringify(post))
-        alert(JSON.stringify(postValue))
+        postValue["datum_postavljanja"] = new Date().toLocaleString()
+        postValue["kogaid"] = location.state.vrednosti[0]
+        var vrednost = "?kogaid=" + postValue['kogaid'] + "&naslov=" + postValue['naslov'] + "&tekst=" + postValue['tekst'] + "&lajkovi=" + postValue['lajkovi'] + "&datum_postavljanja=" + postValue['datum_postavljanja'];
+        requestPost('http://localhost:8080/api/post/edit', vrednost)
     }
+
+    //postovljanje prosledjenih vrednosti u bafer
+    postValue['naslov'] = location.state.vrednosti[1];
+    postValue['tekst'] = location.state.vrednosti[2];
+    postValue['lajkovi'] = location.state.vrednosti[3];
+    postValue['datum_postavljanja'] = location.state.vrednosti[4];
 
     return (<>
         <p className="instrukcije">Instrukcije za koriscenje alata: aktivirati filtere i uneti po kom kriterijumu da se brisu svi elementi u bazi koji ispunjavaju dati uslov.</p>
-        <form className="okolina" method='POST' action='http://localhost:8080/api/post/edit'>
+        <form className="okolina">
             <label> Naslov</label>
             <input type="text" defaultValue={location.state.vrednosti[1]} name="naslov" onChange={naslovChangeValue} />
 
@@ -83,9 +53,8 @@ function IzmeniPost() {
             <label>Datum</label>
             <input type="date" defaultValue={location.state.vrednosti[4]} name="datum_postavljanja" onChange={datumChangeValue} />
 
-            <input type="hidden" name="kogaid" value={location.state.vrednosti[0]} />
 
-            <input type="submit" value="Save" />
+            <button type='button' onClick={() => { Klik() }}>Save</button>
         </form>
     </>);
 }
