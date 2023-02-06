@@ -29,6 +29,14 @@ function Navbar() {
           <button><Link to='/user/napravi'>Napravi</Link></button>
         </div>
       </div>
+      <div className="dropdown perica ilija">
+        <button className="dropbtn">Group
+          <i className="fa fa-caret-down"></i>
+        </button>
+        <div className="dropdown-content">
+          <button><Link to='/group/napravi'>Napravi</Link></button>
+        </div>
+      </div>
       <button className="logout-right"><Link to='/logout'>Logout</Link></button>
     </div>
 

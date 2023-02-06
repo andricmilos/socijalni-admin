@@ -8,7 +8,8 @@ import NapraviUser from './pages/NapraviUser';
 import IzmeniUser from "./pages/IzmeniUser";
 import Login from "./pages/Login";
 import Logout from './pages/Logout';
-
+import NapraviGroup from './pages/NapraviGroup';
+import IzmeniGroup from './pages/IzmeniGroup';
 
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
           <Route path="user/izmeni" element={<IzmeniUser />} />
           <Route path="post/napravi" element={<NapraviPost />} />
           <Route path="post/izmeni" element={<IzmeniPost />} />
+          <Route path="group/izmeni" element={<IzmeniGroup />} />
+          <Route path="group/napravi" element={<NapraviGroup />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
