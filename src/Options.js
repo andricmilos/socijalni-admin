@@ -20,7 +20,7 @@ export default function Options({ url , dv}) {
                 setPodaci([{ "error": "Error" }])
                 console.error(error)
             })
-    }, []);
+        }, []);
 
     return (
         <>
