@@ -1,9 +1,12 @@
 import React from 'react';
+import Options from '../Options';
 import requestPost from '../RequestPost';
 
 function NapraviPost() {
 
-    var post = { "naslov": "", "tekst": "", "lajkovi": 0, "datum_postavljanja": "" }
+    var urlGroup = "http://localhost:8080/api/group/svi";
+
+    var post = { "naslov": "", "tekst": "", "grupe": "", "datum_postavljanja": "" }
 
     const naslovChange = (event) => {
         post["naslov"] = event.target.value
@@ -13,13 +16,13 @@ function NapraviPost() {
         post["tekst"] = event.target.value
     }
 
-    const lajkoviChange = (event) => {
-        post["lajkovi"] = event.target.value
+    const grupeChange = (event) => {
+        post["grupe"] = event.target.value
     }
 
     function Klik() {
         post["datum_postavljanja"] = new Date().toLocaleString()
-        var vrednost = "?naslov=" + post['naslov'] + "&tekst=" + post['tekst'] + "&lajkovi=" + post['lajkovi'] + "&datum_postavljanja=" + post['datum_postavljanja'];
+        var vrednost = "?naslov=" + post['naslov'] + "&tekst=" + post['tekst'] + "&grupe=" + post['grupe'] + "&datum_postavljanja=" + post['datum_postavljanja'];
         requestPost('http://localhost:8080/api/post/add', vrednost)
     }
 
@@ -31,8 +34,10 @@ function NapraviPost() {
             <label>Tekst</label>
             <input type="text" name="tekst" onChange={tekstChange} />
 
-            <label>Lajkovi</label>
-            <input type="number" name="lajkovi" onChange={lajkoviChange} />
+            <label>Grupe</label>
+            <select name="grupe" onChange={grupeChange}>
+                <Options url={urlGroup} />
+            </select>
 
             <button type='button' onClick={() => { Klik() }}>Create</button>
         </form>
