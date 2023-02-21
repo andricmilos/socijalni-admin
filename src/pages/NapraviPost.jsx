@@ -23,6 +23,7 @@ function NapraviPost() {
     function Klik() {
         post["datum_postavljanja"] = new Date().toLocaleString()
         var vrednost = "?naslov=" + post['naslov'] + "&tekst=" + post['tekst'] + "&grupe=" + post['grupe'] + "&datum_postavljanja=" + post['datum_postavljanja'];
+        console.log(post["datum_postavljanja"])
         requestPost('http://localhost:8080/api/post/add', vrednost)
     }
 
