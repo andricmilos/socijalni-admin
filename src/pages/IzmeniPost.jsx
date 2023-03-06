@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
 import requestPost from '../RequestPost';
 import Options from '../Options';
 
