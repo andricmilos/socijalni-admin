@@ -6,7 +6,7 @@ function NapraviPost() {
 
     var urlGroup = "http://localhost:8080/api/group/svi";
 
-    var post = { "naslov": "", "tekst": "", "grupe": "", "datum_postavljanja": "" }
+    var post = { "naslov": "", "tekst": "", "grupe": "", "datum_postavljanja": "", "user": "" }
 
     const naslovChange = (event) => {
         post["naslov"] = event.target.value
@@ -16,13 +16,17 @@ function NapraviPost() {
         post["tekst"] = event.target.value
     }
 
+    const tekstChangeUser = (event) => {
+        post["user"] = event.target.value
+    }
+
     const grupeChange = (event) => {
         post["grupe"] = event.target.value
     }
 
     function Klik() {
         post["datum_postavljanja"] = new Date().toLocaleString()
-        var vrednost = "?naslov=" + post['naslov'] + "&tekst=" + post['tekst'] + "&grupe=" + post['grupe'] + "&datum_postavljanja=" + post['datum_postavljanja'];
+        var vrednost = "?naslov=" + post['naslov'] + "&tekst=" + post['tekst'] + "&grupe=" + post['grupe'] + "&datum_postavljanja=" + post['datum_postavljanja']+ "&user=" + post['user'];
         console.log(post["datum_postavljanja"])
         requestPost('http://localhost:8080/api/post/add', vrednost)
     }
@@ -34,6 +38,9 @@ function NapraviPost() {
 
             <label>Tekst</label>
             <input type="text" name="tekst" onChange={tekstChange} />
+
+            <label>Id usera</label>
+            <input type="number" name="tekst" onChange={tekstChangeUser} />
 
             <label>Grupe</label>
             <select name="grupe" onChange={grupeChange}>
